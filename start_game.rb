@@ -1,4 +1,5 @@
-require_relative 'minesweeper'
+require_relative 'minesweeper/minesweeper'
+require_relative 'minesweeper/pretty_printer'
 
 def make_play(game)
   puts "Choose one"

@@ -1,4 +1,6 @@
-require_relative 'minesweeper'
+require_relative 'minesweeper/minesweeper'
+require_relative 'minesweeper/simple_printer'
+require_relative 'minesweeper/pretty_printer'
 
 width, height, num_mines = 10, 20, 50
 game = Minesweeper.new(width, height, num_mines)
