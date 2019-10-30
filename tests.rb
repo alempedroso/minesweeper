@@ -1,5 +1,7 @@
 require 'minitest/autorun'
-require_relative 'minesweeper'
+require_relative 'minesweeper/minesweeper'
+require_relative 'minesweeper/simple_printer'
+require_relative 'minesweeper/pretty_printer'
 
 class MinesweeperTest < Minitest::Test
   attr_accessor :game
@@ -27,36 +29,24 @@ class MinesweeperTest < Minitest::Test
 
   def test_play_in_a_cell_with_a_number
     assert_equal(true, @game.play(0, 8))
-    puts "Number"
-    PrettyPrinter.new.print_board(@game.board_state(xray:true))
   end
 
   def test_play_in_a_clear_cell
     assert_equal(true, @game.play(0, 5))
-    puts "Clear"
-    PrettyPrinter.new.print_board(@game.board_state(xray:true))
   end
 
   def test_play_in_a_visited_cell
     assert_equal(true, @game.play(6, 0))
     assert_equal(false, @game.play(6, 0))
-    puts "Visited"
-    PrettyPrinter.new.print_board(@game.board_state(xray:true))
   end
 
   def test_play_in_a_cell_at_the_middle
     assert_equal(true, @game.play(4, 3))
-    puts "Middle"
-    PrettyPrinter.new.print_board(@game.board_state(xray:true))
   end
 
   def test_flag_and_unflag_a_cell
     assert_equal(true, @game.flag(1, 0))
-    puts "Flag"
-    PrettyPrinter.new.print_board(@game.board_state(xray:true))
     assert_equal(true, @game.flag(1, 0))
-    puts "Unflag"
-    PrettyPrinter.new.print_board(@game.board_state(xray:true))
   end
 
   def test_play_a_flagged_cell
