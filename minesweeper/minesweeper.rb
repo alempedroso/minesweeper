@@ -1,9 +1,15 @@
-require 'pry'
+# Engine for the minesweeper game
+class Minesweeper
+  attr_accessor :board,
+                :width,
+                :height,
+                :mines,
+                :still_playing,
+                :number_of_visited,
+                :number_of_flags
 
-class Minesweeper # Engine for the minesweeper game
-  attr_accessor :board, :width, :height, :mines, :still_playing, :number_of_visited, :number_of_flags
-
-  def initialize(height, width, mines) # initializes variables and plants mines on the board
+  # initializes variables and plants mines on the board
+  def initialize(height, width, mines)
     @width = width
     @height = height
     @mines = mines
@@ -15,7 +21,8 @@ class Minesweeper # Engine for the minesweeper game
     plant_mines
   end
 
-  def create_cell_matrix # creates a two-dimensional array of Cells
+  # creates a two-dimensional array of Cells
+  def create_cell_matrix
     matrix = []
 
     for row in 0..@height-1
@@ -78,7 +85,7 @@ class Minesweeper # Engine for the minesweeper game
           state[x][y] = value_to_print(cell)
         elsif args[:xray]
           state[x][y] = (cell.has_bomb?) ? "#" : value_to_print(cell)
-        else # just in case it has a shitty hash key or a shitty value xD
+        else
           state[x][y] = value_to_print(cell)
         end
       end
@@ -139,61 +146,4 @@ class Minesweeper # Engine for the minesweeper game
     @still_playing = false if victory?
     true
   end
-end
-
-class Cell # Stores the required information of a playable cell of the board
-  attr_accessor :value, :visited, :has_flag
-
-  def initialize (value)
-    @value = value
-    @visited = false
-    @has_flag = false
-  end
-
-  def has_flag?
-    @has_flag
-  end
-
-  def is_visited?
-    @visited
-  end
-
-  def has_bomb?
-    @value == "#"
-  end
-
-  def is_clear?
-    @value == 0
-  end
-end
-
-class PrettyPrinter # Prints the board state with rows and columns indexes
-
-  def print_board(state)
-    (0..state[0].count-1).each { |n| print " %2d " % [n] }
-    puts
-    state.each_with_index do |row, idx|
-      print "|"
-      row.each do |value|
-        print " #{value} |"
-      end
-      print " #{idx}"
-      puts
-    end
-  end
-
-end
-
-class SimplePrinter # Simply prints the board state
-
-  def print_board(state)
-    state.each_with_index do |row, idx|
-      print "|"
-      row.each do |value|
-        print " #{value} |"
-      end
-      puts
-    end
-  end
-
 end
