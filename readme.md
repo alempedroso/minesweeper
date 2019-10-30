@@ -1,5 +1,24 @@
 ## MINESWEEPER
 
-Eu mudei o nome do método `print` para `print_board` nas classes impressoras do tabuleiro, para ficar mais intuitivo e não competir com o método `print` padrão do ruby.
+It's a simple engine to play the minesweeper game.
+Instructions are given during the gameplay.
 
-Feito na versão 2.2.3
+## Docker
+
+### Building the project
+
+```bash
+docker-compose build
+```
+
+### Running app
+
+```bash
+docker-compose run app sh -c "ruby /myapp/start_game.rb"
+```
+
+### Running tests
+
+```bash
+docker-compose run app sh -c "ruby /myapp/tests.rb"
+```
