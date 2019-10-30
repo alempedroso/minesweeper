@@ -1,3 +1,5 @@
+require_relative "cell"
+
 # Engine for the minesweeper game
 class Minesweeper
   attr_accessor :board,
